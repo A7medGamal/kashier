@@ -1,0 +1,40 @@
+﻿@model kashier.Models.OrderViewModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   @* <script>
+        function responseCallBack(e) {
+            if (e.data.message == "success") {
+                console.log("Success payment", e.data);
+            } else if (e.data.message == "failure") {
+                console.log("Failure payment", e.data);
+            } else {
+                console.log("Other Actions", e.data);
+            }
+        }
+
+        if (window.addEventListener) {
+            console.log("if");
+            window.addEventListener("message", responseCallBack, false);
+        } else {
+            console.log("else");
+            window.attachEvent("onmessage", responseCallBack);
+        }
+    </script>*@
+</head>
+<body>
+   
+    <script id="kashier-iFrame" src="@Model.Order.BaseUrl/kashier-checkout.js"
+            data-amount="@Model.Order.Amount" data-description="some description" data-hash="@Model.Hash"
+            data-currency="@Model.Order.Currency" data-orderId="@Model.Order.MerchantOrderId" data-merchantId="@Model.Order.Mid"
+            data-allowedMethods="@Model.Order.AllowedMethods" data-merchantRedirect="https://localhost:7086/Payment/CallBack"
+            data-mode="@Model.Order.Mode" data-store="Qassat" data-type="external" data-display="en"></script>
+
+</body>
+</html>@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

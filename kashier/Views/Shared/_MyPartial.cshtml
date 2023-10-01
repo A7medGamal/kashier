@@ -1,0 +1,66 @@
+﻿@model kashier.Models.OrderViewModel
+
+@{
+    var basurl = Model.Order.BaseUrl;
+    var amount = Model.Order.Amount;
+    var currency = Model.Order.Currency;
+    var hash = Model.Hash;
+    var orderid = Model.Order.MerchantOrderId;
+    var mid = Model.Order.Mid;
+    var methodes = Model.Order.AllowedMethods;
+    var mode = Model.Order.Mode;
+}
+<script>
+
+    if("@Model" != null )
+   {
+        $(document).ready(function () {
+            // Check if data is available before using it on the client-side
+
+            // Access data and perform actions
+
+
+
+            $.ajax({
+                url: '/Payment/index',
+                type: 'GET',
+
+
+                success: function (data) {
+                    // Display the partial view content within the specified container
+
+                    <script id="kashier-iFrame" src = "@basurl/kashier-checkout.js"
+                    data - amount="@amount" data - description="some description" data - hash="@hash"
+                    data - currency="@currency" data - orderId="@orderid" data - merchantId="@mid"
+                    data - allowedMethods="@methodes" data - merchantRedirect="https://localhost:7086/Payment/CallBack"
+                    data - mode="@mode" data - store="Qassat" data - type="external" data - display="en" ></script>
+
+    $('#partialViewContainer').html(data);
+            },
+    error: function(error) {
+                console.error(error);
+            }
+        });
+
+        });
+   }
+</script>
+
+
+      
+
+@*
+
+ @if (Model != null && Model.Order != null && !string.IsNullOrEmpty(Model.Hash))
+{
+    // Access data and perform actions
+
+    <script id="kashier-iFrame" src="@Model.Order.BaseUrl/kashier-checkout.js"
+            data-amount="@Model.Order.Amount" data-description="some description" data-hash="@Model.Hash"
+            data-currency="@Model.Order.Currency" data-orderId="@Model.Order.MerchantOrderId" data-merchantId="@Model.Order.Mid"
+            data-allowedMethods="@Model.Order.AllowedMethods" data-merchantRedirect="https://localhost:7086/Payment/CallBack"
+            data-mode="@Model.Order.Mode" data-store="Qassat" data-type="external" data-display="en"></script>
+
+}
+*@
+
